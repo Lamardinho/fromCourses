@@ -1,0 +1,29 @@
+package Kursi.P9.T3_ArrayList;
+
+import java.util.Objects;
+
+class Client {
+    long id;    // идентификационный номер клиента
+    String type;    // тип клиента;
+    final String institution = "institution";
+    final String individual = "individual";
+    String name;    // название клиента;
+    double sum;    // сумма покупок клиента.
+
+    //конструктор класса Client
+    public Client(long id, String type, String name, double sum) {
+        // если id меньше 100000000000L, то приравниваем к 100000000000L
+        if (id < 100000000000L) this.id = 100000000000L;
+        else this.id = id;  // иначе id = указанному значению
+
+        if (type == null) this.type = institution;    // если type = null, то пишем "Default"
+        else if (!type.equals(individual)) this.type = institution;
+        else this.type = type;
+
+        this.name = Objects.requireNonNullElse(name, "Default");
+        if (this.name.equals("")) this.name = "Default";
+
+        if (sum < 0) this.sum = 0;    // если sum меньше 0, то приравниваем к 0
+        else this.sum = sum;
+    }
+}
